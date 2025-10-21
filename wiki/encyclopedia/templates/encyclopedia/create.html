@@ -1,0 +1,25 @@
+<!-- templates/encyclopedia/create.html -->
+
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}Utwórz nową stronę{% endblock %}
+
+{% block body %}
+  <h2>Utwórz nową stronę</h2>
+
+  {% if error %}
+    <div style="color: red; font-weight: bold;">{{ error }}</div>
+  {% endif %}
+
+  <form action="{% url 'create' %}" method="post">
+    {% csrf_token %}
+    <label for="title">Tytuł:</label><br>
+    <input type="text" id="title" name="title" required value="{{ title|default:'' }}"><br><br>
+
+    <label for="content">Treść (Markdown):</label><br>
+    <textarea id="content" name="content" rows="10" cols="60" required>{{ content|default:'' }}</textarea><br><br>
+
+    <input type="submit" value="Zapisz">
+  </form>
+
+{% endblock %}

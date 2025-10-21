@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyniki wyszukiwania</title>
+</head>
+<body>
+    <h1>Wyniki wyszukiwania dla: "{{ query }}"</h1>
+
+    {% if results %}
+        <ul>
+            {% for result in results %}
+    <li><a href="{% url 'entry' title=result %}">{{ result }}</a></li>
+{% endfor %}
+
+        </ul>
+    {% else %}
+        <p>Brak wyników dla zapytania "{{ query }}"</p>
+    {% endif %}
+
+    <a href="/">Powrót do strony głównej</a>
+</body>
+</html>

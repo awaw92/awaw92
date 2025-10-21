@@ -1,0 +1,11 @@
+<!-- templates/encyclopedia/error.html -->
+
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}Błąd{% endblock %}
+
+{% block body %}
+  <h2>Błąd</h2>
+  <p>{{ message }}</p>
+  <a href="{% url 'index' %}">Powrót do strony głównej</a>
+{% endblock %}
