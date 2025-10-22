@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Advanced Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Link w prawym górnym rogu */
+        div.links {
+            text-align: right;
+            margin: 10px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Formularz zaawansowanego wyszukiwania */
+        form.advanced-form {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4d90fe;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="links">
+        <a href="index.html">Google Search</a>
+    </div>
+
+    <h2>Advanced Search</h2>
+
+    <form class="advanced-form" action="https://www.google.com/search" method="get">
+        <div class="form-group">
+            <label for="as_q">Wszystkie te s³owa:</label>
+            <input type="text" id="as_q" name="as_q">
+        </div>
+
+        <div class="form-group">
+            <label for="as_epq">Dok³adna fraza:</label>
+            <input type="text" id="as_epq" name="as_epq">
+        </div>
+
+        <div class="form-group">
+            <label for="as_oq">Jakiekolwiek z tych s³ów:</label>
+            <input type="text" id="as_oq" name="as_oq">
+        </div>
+
+        <div class="form-group">
+            <label for="as_eq">¯adne z tych s³ów:</label>
+            <input type="text" id="as_eq" name="as_eq">
+        </div>
+
+        <input type="submit" value="Advanced Search">
+    </form>
+
+</body>
+</html>
