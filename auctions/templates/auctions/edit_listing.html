@@ -1,0 +1,25 @@
+{% extends "auctions/base_generic.html" %}
+
+{% block content %}
+<h2>Edytuj aukcję: {{ listing.title }}</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+    <a href="{% url 'auctions:listing_detail' listing.id %}" class="btn btn-secondary">Anuluj</a>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Przykładowy JS, jeśli potrzebujesz walidacji formularza przed wysłaniem
+    // Można też dodać podgląd obrazu lub inne funkcjonalności
+</script>
+{% endblock %}
+
+{% block navbar %}
+{% if not hide_navbar %}
+    {{ block.super }}
+{% endif %}
+{% endblock %}

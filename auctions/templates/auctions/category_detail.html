@@ -1,0 +1,46 @@
+{% extends 'auctions/base_generic.html' %}
+
+{% load static %}
+
+{% block title %}Kategoria: {{ category.name }}{% endblock %}
+
+{% block content %}
+<div class="category-container container my-5">
+    <!-- Nagłówek kategorii -->
+    <div class="category-header text-center mb-5">
+        <h1 class="category-title">{{ category.name }}</h1>
+        <p class="category-description">Ogłoszenia w kategorii "{{ category.name }}"</p>
+    </div>
+
+    <!-- Sprawdzamy, czy są ogłoszenia -->
+    {% if listings %}
+    <div class="listings-container">
+        <div class="row">
+            {% for listing in listings %}
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="listing-card card shadow-lg rounded border-0">
+                    <!-- Sprawdzamy, czy listing ma przypisany obrazek -->
+                    {% if listing.image_url %}
+                    <img src="{{ listing.image_url }}" class="card-img-top rounded-top" alt="{{ listing.title }}">
+                    {% else %}
+                    <img src="{% static 'images/default-image.jpg' %}" class="card-img-top rounded-top" alt="Brak obrazu">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ listing.title }}</h5>
+                        <p class="card-text">
+                            <strong>Cena wyjściowa:</strong> {{ listing.starting_bid|floatformat:2 }} PLN
+                        </p>
+                        <a href="{% url 'auctions:listing_detail' listing.id %}" class="btn btn-primary w-100">Zobacz szczegóły</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="no-listings text-center py-5">
+        <p class="h3 text-muted">Brak ogłoszeń w tej kategorii.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

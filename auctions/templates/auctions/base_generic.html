@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Moja Aplikacja{% endblock %}</title>
+
+    <!-- Czcionki -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="{% if is_category_page %}category-page{% endif %}">
+
+    {% block navbar %}
+    {% if not hide_navbar %}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'auctions:index' %}">Moja Aplikacja</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto d-flex align-items-center">
+                        <li class="nav-item me-2"><a class="nav-link" href="{% url 'auctions:index' %}">Strona Główna</a></li>
+                        <li class="nav-item me-2"><a class="nav-link" href="{% url 'auctions:category_list' %}">Kategorie</a></li>
+                        <li class="nav-item me-2"><a class="nav-link" href="{% url 'auctions:user_profile' %}">Profil</a></li>
+
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="btn btn-success btn-sm text-white ms-2" href="{% url 'auctions:view_watchlist' %}">Moja Watchlist</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-danger btn-sm text-white ms-2" href="{% url 'auctions:logout' %}">Wyloguj się</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-primary btn-sm text-white ms-2" href="{% url 'auctions:login' %}">Zaloguj się</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-secondary btn-sm text-white ms-2" href="{% url 'auctions:register' %}">Zarejestruj się</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% endif %}
+    {% endblock %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if not hide_navbar %}
+    <footer class="footer bg-light py-4">
+        <div class="container text-center">
+            <!-- Stopka -->
+        </div>
+    </footer>
+    {% endif %}
+
+</body>
+</html>
