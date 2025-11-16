@@ -1,0 +1,34 @@
+/* Podstawowy wygląd maila */
+.email {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: white; /* domyślne białe tło */
+    transition: background-color 0.3s; /* płynna zmiana tła */
+}
+
+/* Mail przeczytany - teraz identyczny jak hover */
+.email.read-email {
+    background-color: #f0f0f0 !important; /* taki sam kolor jak przy hover */
+}
+
+/* Hover dla nieprzeczytanych maili */
+.email:not(.read-email):hover {
+    background-color: #f0f0f0; /* podświetlenie przy najechaniu */
+}
+
+/* Hover dla przeczytanych maili pozostaje taki sam jak tło */
+.email.read-email:hover {
+    background-color: #f0f0f0 !important;
+}
+
+/* Styl dla maila otwartego (przeczytanego) */
+#email-view.read-email {
+    background-color: #f9f9f9; /* jaśniejsze tło dla otwartego maila */
+}
+
+/* Tekstarea w formularzu */
+textarea {
+    min-height: 400px;
+}

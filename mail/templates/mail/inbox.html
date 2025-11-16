@@ -1,0 +1,32 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block title %}Inbox{% endblock %}
+
+{% block body %}
+<!-- Widok skrzynki odbiorczej -->
+<div id="emails-view" style="display: none;"></div>
+
+<!-- Widok komponowania maila -->
+<div id="compose-view" style="display: none;">
+    <h3>Nowy email</h3>
+    <form id="compose-form">
+        <div class="mb-3">
+            <label for="compose-recipients" class="form-label">Do:</label>
+            <input type="text" class="form-control" id="compose-recipients" required>
+        </div>
+        <div class="mb-3">
+            <label for="compose-subject" class="form-label">Temat:</label>
+            <input type="text" class="form-control" id="compose-subject">
+        </div>
+        <div class="mb-3">
+            <label for="compose-body" class="form-label">Treść:</label>
+            <textarea class="form-control" id="compose-body" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Wyślij</button>
+    </form>
+</div>
+
+<!-- Widok pojedynczego maila -->
+<div id="email-view" style="display: none;"></div>
+{% endblock %}
