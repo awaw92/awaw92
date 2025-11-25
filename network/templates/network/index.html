@@ -1,0 +1,278 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<h2>All Posts</h2>
+
+{% if user.is_authenticated %}
+<form id="new-post-form">
+    {% csrf_token %}
+    <textarea id="post-content" name="content" rows="3" placeholder="What's on your mind?" required></textarea><br>
+    <button type="submit">Post</button>
+</form>
+{% else %}
+<p>You must <a href="{% url 'login' %}">log in</a> to post.</p>
+{% endif %}
+
+<hr>
+
+<div id="posts-container">
+    {% for post in page_obj %}
+        <div class="post" data-post-id="{{ post.id }}">
+            {% if post.user and post.user.username %}
+                <strong><a href="{% url 'profile' username=post.user.username %}">{{ post.user.username }}</a></strong>
+            {% else %}
+                <strong>Anonimowy użytkownik</strong>
+            {% endif %}
+            • <small>{{ post.timestamp|date:"M d, Y H:i" }}</small>
+            
+            <p class="post-content">{{ post.content }}</p>
+
+            <!-- Edycja posta, tylko dla właściciela -->
+            {% if post.user == request.user %}
+                <button class="edit-post-btn" data-post-id="{{ post.id }}">Edit</button>
+            {% endif %}
+
+            <!-- Like/Unlike -->
+            <button class="like-button" data-post-id="{{ post.id }}">
+                {% if user in post.likes.all %}
+                    Unlike
+                {% else %}
+                    Like
+                {% endif %}
+            </button>
+            <span id="likes-count-{{ post.id }}">{{ post.total_likes }}</span> Likes
+
+            <hr>
+        </div>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+</div>
+
+<!-- Paginacja -->
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+</div>
+
+<style>
+.post {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.edit-textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.save-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+.edit-post-btn {
+    padding: 5px 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-post-btn:hover {
+    background-color: #0b7dda;
+}
+
+.like-button {
+    padding: 5px 10px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.like-button:hover {
+    background-color: #e68a00;
+}
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("new-post-form");
+    const postsContainer = document.getElementById("posts-container");
+    const textarea = document.getElementById("post-content");
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // Dodawanie nowego posta
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const content = textarea.value.trim();
+            if (!content) return;
+
+            fetch("{% url 'new_post' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify({ content: content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    const postDiv = document.createElement("div");
+                    postDiv.className = "post";
+                    postDiv.dataset.postId = data.post_id;
+                    postDiv.innerHTML = `
+                        <strong><a href="${data.profile_url}" class="username-link">${data.user}</a></strong> • 
+                        <small>${data.timestamp}</small>
+                        <p class="post-content">${data.content}</p>
+                        <button class="edit-post-btn" data-post-id="${data.post_id}">Edit</button>
+                        <button class="like-button" data-post-id="${data.post_id}">Like</button>
+                        <span id="likes-count-${data.post_id}">0</span> Likes
+                        <hr>
+                    `;
+                    postsContainer.prepend(postDiv);
+                    textarea.value = "";
+
+                    // Dodaj event listener dla nowego przycisku Like
+                    const likeBtn = postDiv.querySelector(".like-button");
+                    likeBtn.addEventListener("click", likePost);
+                }
+            })
+            .catch(error => console.error("Błąd:", error));
+        });
+    }
+
+    // Edycja postów
+    postsContainer.addEventListener("click", function(event) {
+        if (event.target.classList.contains("edit-post-btn")) {
+            const btn = event.target;
+            const postDiv = btn.closest(".post");
+            const postId = btn.dataset.postId;
+            const contentP = postDiv.querySelector(".post-content");
+            const originalContent = contentP.innerText;
+
+            const editTextarea = document.createElement("textarea");
+            editTextarea.value = originalContent;
+            editTextarea.rows = 3;
+            editTextarea.className = "edit-textarea";
+
+            const saveBtn = document.createElement("button");
+            saveBtn.innerText = "Save";
+            saveBtn.className = "save-btn";
+
+            postDiv.replaceChild(editTextarea, contentP);
+            btn.replaceWith(saveBtn);
+
+            saveBtn.addEventListener("click", function() {
+                const newContent = editTextarea.value.trim();
+                if (!newContent) return;
+
+                fetch(`/edit_post/${postId}/`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrftoken
+                    },
+                    body: JSON.stringify({ content: newContent })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        const newP = document.createElement("p");
+                        newP.className = "post-content";
+                        newP.innerText = data.content;
+
+                        editTextarea.replaceWith(newP);
+
+                        const newEditBtn = document.createElement("button");
+                        newEditBtn.className = "edit-post-btn";
+                        newEditBtn.dataset.postId = postId;
+                        newEditBtn.innerText = "Edit";
+                        saveBtn.replaceWith(newEditBtn);
+                    }
+                })
+                .catch(error => console.error("Błąd:", error));
+            });
+        }
+
+        // Like/Unlike
+        if (event.target.classList.contains("like-button")) {
+            likePost(event);
+        }
+    });
+
+    function likePost(event) {
+        const button = event.target;
+        const postId = button.dataset.postId;
+
+        fetch(`/like/${postId}/`, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": csrftoken,
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            const likesCounter = document.querySelector(`#likes-count-${postId}`);
+            if (likesCounter) likesCounter.innerText = data.total_likes;
+
+            button.innerText = data.liked ? "Unlike" : "Like";
+        })
+        .catch(error => console.error("Błąd:", error));
+    }
+});
+</script>
+{% endblock %}

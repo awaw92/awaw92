@@ -1,0 +1,60 @@
+/* Ogólne style strony */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Formularz nowego posta */
+#new-post-form {
+    margin-bottom: 20px;
+}
+
+#new-post-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    resize: vertical;
+}
+
+#new-post-form button {
+    margin-top: 5px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#new-post-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Kontener postów */
+#posts-container .post {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Informacje o poście */
+#posts-container .post strong {
+    font-weight: bold;
+}
+
+#posts-container .post small {
+    color: #6c757d;
+}
+
+#posts-container .post p {
+    margin-top: 5px;
+    margin-bottom: 0;
+}

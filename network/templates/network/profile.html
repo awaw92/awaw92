@@ -1,0 +1,198 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<h2>{{ profile_user.username }}'s Profile</h2>
+
+<p>
+    <strong>Followers:</strong> <span id="followers-count">{{ followers_count }}</span> |
+    <strong>Following:</strong> <span id="following-count">{{ following_count }}</span>
+</p>
+
+<p>
+    {% if profile_user != request.user %}
+        <button id="follow-toggle-btn" data-user-id="{{ profile_user.id }}">
+            {% if is_following %}Unfollow{% else %}Follow{% endif %}
+        </button>
+    {% endif %}
+</p>
+
+<h3>Posts:</h3>
+<div id="posts-container">
+    {% for post in page_obj %}
+    <div class="post" data-post-id="{{ post.id }}">
+        <p><strong>{{ post.user.username }}</strong></p>
+        <p class="post-content">{{ post.content }}</p>
+        <p><small>{{ post.timestamp|date:"F j, Y, g:i a" }}</small></p>
+
+        {% if post.user == request.user %}
+            <button class="edit-post-btn" data-post-id="{{ post.id }}">Edit</button>
+        {% endif %}
+        <hr>
+    </div>
+    {% empty %}
+    <p>This user has no posts yet.</p>
+    {% endfor %}
+</div>
+
+<style>
+/* Estetyczne style dla edycji posta */
+.post {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.edit-textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.save-btn {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+.edit-post-btn {
+    padding: 5px 10px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-post-btn:hover {
+    background-color: #0b7dda;
+}
+</style>
+
+<script src="{% static 'network/scripts.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Funkcja do pobrania CSRF z ciasteczka
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    // FOLLOW / UNFOLLOW
+    const toggleBtn = document.getElementById("follow-toggle-btn");
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", async (event) => {
+            const btn = event.target;
+            const userId = btn.getAttribute("data-user-id");
+            const action = btn.innerText.toLowerCase();
+
+            try {
+                const response = await fetch(`/${action}/${userId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                    },
+                });
+                const data = await response.json();
+
+                if (data.message) {
+                    btn.innerText = data.is_following ? "Unfollow" : "Follow";
+                    btn.className = data.is_following ? "unfollow-btn" : "follow-btn";
+                    document.getElementById('followers-count').innerText = data.followers_count;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    // EDYCJA POSTÓW
+    const postsContainer = document.getElementById("posts-container");
+
+    postsContainer.addEventListener("click", function(event) {
+        if (!event.target.classList.contains("edit-post-btn")) return;
+
+        const btn = event.target;
+        const postDiv = btn.closest(".post");
+        const postId = btn.dataset.postId;
+        const contentP = postDiv.querySelector(".post-content");
+        const originalContent = contentP.innerText;
+
+        // Zamiana <p> na textarea + Save button
+        const editTextarea = document.createElement("textarea");
+        editTextarea.value = originalContent;
+        editTextarea.rows = 3;
+        editTextarea.className = "edit-textarea";
+
+        const saveBtn = document.createElement("button");
+        saveBtn.innerText = "Save";
+        saveBtn.className = "save-btn";
+
+        // Podmieniamy elementy
+        postDiv.replaceChild(editTextarea, contentP);
+        btn.replaceWith(saveBtn);
+
+        saveBtn.addEventListener("click", async function() {
+            const newContent = editTextarea.value.trim();
+            if (!newContent) return;
+
+            try {
+                const response = await fetch(`/edit_post/${postId}/`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrftoken
+                    },
+                    body: JSON.stringify({ content: newContent })
+                });
+                const data = await response.json();
+
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    const newP = document.createElement("p");
+                    newP.className = "post-content";
+                    newP.innerText = data.content;
+
+                    editTextarea.replaceWith(newP);
+
+                    const newEditBtn = document.createElement("button");
+                    newEditBtn.className = "edit-post-btn";
+                    newEditBtn.dataset.postId = postId;
+                    newEditBtn.innerText = "Edit";
+                    saveBtn.replaceWith(newEditBtn);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
