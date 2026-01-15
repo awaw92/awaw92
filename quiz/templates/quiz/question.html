@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInContainer 0.8s forwards;
+        }
+
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            animation: fadeInText 0.6s ease;
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-counter {
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #555;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); color: #555; }
+            50% { transform: scale(1.05); color: #222; }
+            100% { transform: scale(1); color: #555; }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-button {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInButton 0.5s forwards;
+        }
+
+        .option-button:nth-child(1) { animation-delay: 0.1s; }
+        .option-button:nth-child(2) { animation-delay: 0.2s; }
+        .option-button:nth-child(3) { animation-delay: 0.3s; }
+        .option-button:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInButton {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .option-button:hover {
+            background-color: #d9f7e1;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .correct {
+            background-color: #8BC34A !important;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: #F44336 !important;
+            color: white;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        {% if question %}
+            <div class="question-counter">
+                Question {{ request.session.current_index|add:"1" }} of {{ request.session.question_ids|length }}
+            </div>
+            <h2>{{ question.question_text }}</h2>
+            <form method="post" id="quiz-form">
+                {% csrf_token %}
+                <button type="button" class="option-button" data-value="1">{{ question.option1 }}</button>
+                <button type="button" class="option-button" data-value="2">{{ question.option2 }}</button>
+                <button type="button" class="option-button" data-value="3">{{ question.option3 }}</button>
+                <button type="button" class="option-button" data-value="4">{{ question.option4 }}</button>
+            </form>
+        {% else %}
+            <p>Brak pytań w tej kategorii.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.option-button');
+        const correctOption = {{ question.correct_option }};
+        const form = document.getElementById('quiz-form');
+        const container = document.getElementById('container');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selected = parseInt(btn.dataset.value);
+
+                // Podświetlamy wszystkie przyciski
+                buttons.forEach(b => {
+                    if (parseInt(b.dataset.value) === correctOption) {
+                        b.classList.add('correct');
+                    } else if (parseInt(b.dataset.value) === selected) {
+                        b.classList.add('incorrect');
+                    }
+                    b.disabled = true;
+                });
+
+                // Tworzymy ukryte pole w formularzu
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'option';
+                input.value = selected;
+                form.appendChild(input);
+
+                // Animacja fade out + submit
+                setTimeout(() => {
+                    container.classList.add('fade-out');
+                }, 600);
+
+                setTimeout(() => {
+                    form.submit();
+                }, 1200);
+            });
+        });
+    </script>
+</body>
+</html>

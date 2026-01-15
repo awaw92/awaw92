@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ACB6E5, #74ebd5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* Question summary */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+
+        li.correct-answer {
+            background-color: #d1ffd1;
+            animation: popIn 0.4s ease;
+        }
+
+        li.incorrect-answer {
+            background-color: #ffd1d1;
+            animation: popIn 0.4s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Ranking table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr.highlight {
+            background-color: #fff7c0;
+            font-weight: bold;
+        }
+
+        /* Animacja pojawiania się wierszy tabeli */
+        @keyframes rowFadeIn {
+            from {opacity: 0; transform: translateX(-30px);}
+            to {opacity: 1; transform: translateX(0);}
+        }
+
+        tr.top-score-row {
+            opacity: 0;
+            animation: rowFadeIn 0.5s forwards;
+        }
+
+        /* link play again */
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #74ebd5;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            background-color: #ACB6E5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Result</h1>
+        <p>Your Score: {{ score }} / {{ total_questions }}</p>
+
+        <h2>Question Summary:</h2>
+        <ul>
+            {% for q in questions %}
+                <li class="{% if q.your_answer == q.correct_answer %}correct-answer{% else %}incorrect-answer{% endif %}">
+                    <strong>{{ q.text }}</strong><br>
+                    Your answer: 
+                    {% if q.your_answer == q.correct_answer %}
+                        <span class="correct">{{ q.your_answer }}</span>
+                    {% else %}
+                        <span class="incorrect">{{ q.your_answer }}</span>
+                        (Correct answer: <span class="correct">{{ q.correct_answer }}</span>)
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Top Scores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Age</th>
+                    <th>Score</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in top_scores %}
+                    <tr class="top-score-row {% if player.name == player_name and player.score == score %}highlight{% endif %}" 
+                        style="animation-delay: {{ forloop.counter0|add:"0.1"|floatformat:1 }}s;">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.country }}</td>
+                        <td>{{ player.age }}</td>
+                        <td>{{ player.score }}</td>
+                        <td>{{ player.level|title }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'quiz:start_quiz' %}">Play Again</a>
+    </div>
+</body>
+</html>
