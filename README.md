@@ -83,5 +83,9 @@ All quiz logic, scoring, and session management are implemented in Django views.
 
 This project is for educational purposes.
 
+## Moje certyfikaty
+
+![CS50 Certificate](assets/CS50W.png)
+
 
 
