@@ -1,7 +1,3 @@
 # 📜 Moje certyfikaty
 
-![CS50](./CS50W.png)
-
-
-
-
+![CS50](./assets/CS50W.png)
