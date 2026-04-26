@@ -55,7 +55,7 @@ Aplikacja webowa typu quiz stworzona w Django, umożliwiająca sprawdzanie wiedz
 * szczegółowe podsumowanie wyników
 
 **Technologie:** Python, Django, JavaScript, HTML, CSS, SQLite<BR>
-**Repozytorium:** [link]<BR>
+**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
 **Demo:** [link]
 
 ---
