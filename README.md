@@ -2,7 +2,7 @@
 
 Jestem programistą webowym na początku swojej kariery, skupionym na tworzeniu aplikacji w Pythonie (Django) oraz JavaScript.
 
-Posiadam doświadczenie w budowaniu aplikacji webowych (full-stack), obejmujące backend, frontend oraz pracę z API. Największą uwagę skupiam na backendzie, pracy z danymi oraz logice aplikacji.
+Tworzę aplikacje webowe (full-stack) obejmujące backend, frontend oraz pracę z API. Największą uwagę skupiam na backendzie. Interesuje mnie tworzenie aplikacji z realną logiką biznesową oraz przetwarzaniem danych.
 
 Obecnie szukam pierwszej pracy jako **Junior Developer**.
 
