@@ -55,7 +55,7 @@ Aplikacja webowa typu quiz stworzona w Django, umożliwiająca sprawdzanie wiedz
 * szczegółowe podsumowanie wyników
 
 **Technologie:** Python, Django, JavaScript, HTML, CSS, SQLite<BR>
-**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
+**Repozytorium:** https://github.com/awaw92/world-geography-quiz <BR>
 **Demo:** https://www.youtube.com/watch?v=x0H0K57mjEU
 
 ---
@@ -73,7 +73,7 @@ Aplikacja aukcyjna inspirowana platformami e-commerce, stworzona w Django.
 * kategorie oraz panel administracyjny
 
 **Technologie:** Python, Django, SQLite, HTML, CSS<BR>
-**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
+**Repozytorium:** https://github.com/awaw92/commerce <BR>
 **Demo:** https://www.youtube.com/watch?v=JrHB0RRyoZw&pp=0gcJCdQKAYcqIYzv
 
 ---
@@ -90,7 +90,7 @@ Aplikacja typu wiki umożliwiająca tworzenie i edycję stron w formacie Markdow
 * losowa strona i obsługa błędów
 
 **Technologie:** Python, Django, HTML, CSS, Markdown<BR>
-**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
+**Repozytorium:** https://github.com/awaw92/wiki <BR>
 **Demo:** https://www.youtube.com/watch?v=aZRAdCZa1lk
 
 ---
@@ -108,7 +108,7 @@ Aplikacja typu single-page email client oparta o JavaScript i REST API.
 * odpowiadanie na wiadomości
 
 **Technologie:** JavaScript, HTML, CSS, REST API<BR>
-**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
+**Repozytorium:** https://github.com/awaw92/mail <BR>
 **Demo:** https://www.youtube.com/watch?v=MWtPhgErXE0
 
 ---
@@ -124,7 +124,7 @@ Front-end wyszukiwarki inspirowany Google Search.
 * przycisk „I’m Feeling Lucky”
 
 **Technologie:** HTML, CSS<BR>
-**Repozytorium:** https://github.com/awaw92/awaw92 <BR>
+**Repozytorium:** https://github.com/awaw92/search <BR>
 **Demo:** https://www.youtube.com/watch?v=I7E3iYsNsPA
 
 ---
