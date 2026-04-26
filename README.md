@@ -1,6 +1,6 @@
 # 👋 Cześć, jestem Adrian
 
-Jestem początkującym programistą webowym, skupionym na tworzeniu aplikacji w Pythonie (Django) oraz JavaScript.
+Jestem programistą webowym na początku swojej kariery, skupionym na tworzeniu aplikacji w Pythonie (Django) oraz JavaScript.
 
 Posiadam doświadczenie w budowaniu aplikacji webowych (full-stack), obejmujące backend, frontend oraz pracę z API. Największą uwagę skupiam na backendzie, pracy z danymi oraz logice aplikacji.
 
@@ -29,6 +29,14 @@ Dodatkowo ukończyłem:
 * **Backend:** Python (Django)
 * **Bazy danych:** SQL (podstawy), SQLite
 * **Inne:** REST API, Git, GitHub
+
+* ## 💡 Umiejętności
+
+- tworzenie aplikacji webowych w Django (modele, widoki, sesje)
+- integracja z API (REST, fetch)
+- budowa aplikacji typu SPA (JavaScript)
+- praca z bazą danych (SQLite, podstawy SQL)
+- podstawowa walidacja danych i logika biznesowa
 
 ---
 
