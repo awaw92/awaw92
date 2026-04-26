@@ -19,7 +19,7 @@ Mam wykształcenie informatyczne:
 Dodatkowo ukończyłem:
 
 * Harvard CS50 – Web Programming with Python and JavaScript
-* certyfikat F100 – podstawy testowania oprogramowania
+* certyfikat F100 – podstawy testowania manualnego i automatyzującego
 
 ---
 
