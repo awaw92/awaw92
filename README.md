@@ -64,8 +64,8 @@ Aplikacja aukcyjna inspirowana platformami e-commerce, stworzona w Django.
 * komentarze użytkowników
 * kategorie oraz panel administracyjny
 
-**Technologie:** Python, Django, SQLite, HTML, CSS
-**Repozytorium:** [link]
+**Technologie:** Python, Django, SQLite, HTML, CSS<BR>
+**Repozytorium:** [link]<BR>
 **Demo:** [link]
 
 ---
@@ -81,8 +81,8 @@ Aplikacja typu wiki umożliwiająca tworzenie i edycję stron w formacie Markdow
 * konwersja Markdown → HTML
 * losowa strona i obsługa błędów
 
-**Technologie:** Python, Django, HTML, CSS, Markdown
-**Repozytorium:** [link]
+**Technologie:** Python, Django, HTML, CSS, Markdown<BR>
+**Repozytorium:** [link]<BR>
 **Demo:** [link]
 
 ---
@@ -99,8 +99,8 @@ Aplikacja typu single-page email client oparta o JavaScript i REST API.
 * oznaczanie jako przeczytane / archiwizacja
 * odpowiadanie na wiadomości
 
-**Technologie:** JavaScript, HTML, CSS, REST API
-**Repozytorium:** [link]
+**Technologie:** JavaScript, HTML, CSS, REST API<BR>
+**Repozytorium:** [link]<BR>
 **Demo:** [link]
 
 ---
@@ -115,8 +115,8 @@ Front-end wyszukiwarki inspirowany Google Search.
 * obsługa parametrów GET
 * przycisk „I’m Feeling Lucky”
 
-**Technologie:** HTML, CSS
-**Repozytorium:** [link]
+**Technologie:** HTML, CSS<BR>
+**Repozytorium:** [link]<BR>
 **Demo:** [link]
 
 ---
