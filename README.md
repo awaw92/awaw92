@@ -30,7 +30,7 @@ Dodatkowo ukończyłem:
 * **Bazy danych:** SQL (podstawy), SQLite
 * **Inne:** REST API, Git, GitHub
 
-* ## 💡 Umiejętności
+## 💡 Umiejętności
 
 - tworzenie aplikacji webowych w Django (modele, widoki, sesje)
 - integracja z API (REST, fetch)
