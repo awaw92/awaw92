@@ -123,8 +123,8 @@ Front-end wyszukiwarki inspirowany Google Search.
 
 ## 📫 Kontakt
 
-* Email: [twój email]
-* LinkedIn: [link]
+* Email: adrianwawrzyniak92@wp.pl
+
 
 
 
