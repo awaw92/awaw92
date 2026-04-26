@@ -46,8 +46,8 @@ Aplikacja webowa typu quiz stworzona w Django, umożliwiająca sprawdzanie wiedz
 * dynamiczna obsługa odpowiedzi (JavaScript)
 * szczegółowe podsumowanie wyników
 
-**Technologie:** Python, Django, JavaScript, HTML, CSS, SQLite
-**Repozytorium:** [link]
+**Technologie:** Python, Django, JavaScript, HTML, CSS, SQLite<BR>
+**Repozytorium:** [link]<BR>
 **Demo:** [link]
 
 ---
