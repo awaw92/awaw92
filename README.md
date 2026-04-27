@@ -4,8 +4,6 @@ Jestem programistą webowym na początku swojej kariery, skupionym na tworzeniu 
 
 Tworzę aplikacje webowe (full-stack) obejmujące backend, frontend oraz pracę z API. Największą uwagę skupiam na backendzie. Interesuje mnie tworzenie aplikacji z realną logiką biznesową oraz przetwarzaniem danych.
 
-Obecnie szukam pierwszej pracy jako **Junior Developer**.
-
 ---
 
 ## 🎓 O mnie
