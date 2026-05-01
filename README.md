@@ -52,7 +52,7 @@ W swoich projektach zwracam uwagę nie tylko na ich tworzenie, ale również na 
 
 📂 Projekty
 
-1. World Geography Quiz
+1. World Geography Quiz<BR>
    Aplikacja webowa typu quiz stworzona w Django, umożliwiająca sprawdzanie wiedzy z geografii świata.
 
 Funkcjonalności:
@@ -63,8 +63,8 @@ Funkcjonalności:
 * dynamiczna obsługa odpowiedzi (JavaScript)
 * szczegółowe podsumowanie wyników
 
-Technologie: Python, Django, JavaScript, HTML, CSS, SQLite
-Repozytorium: https://github.com/awaw92/world-geography-quiz
+Technologie: Python, Django, JavaScript, HTML, CSS, SQLite<BR>
+Repozytorium: https://github.com/awaw92/world-geography-quiz<BR>
 Demo: https://www.youtube.com/watch?v=x0H0K57mjEU
 
 ---
