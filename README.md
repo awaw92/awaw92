@@ -69,7 +69,7 @@ Demo: https://www.youtube.com/watch?v=x0H0K57mjEU
 
 ---
 
-2. Auction Web Application
+2. Auction Web Application<BR>
    Aplikacja aukcyjna inspirowana platformami e-commerce, stworzona w Django.
 
 Funkcjonalności:
@@ -80,13 +80,13 @@ Funkcjonalności:
 * komentarze użytkowników
 * kategorie oraz panel administracyjny
 
-Technologie: Python, Django, SQLite, HTML, CSS
-Repozytorium: https://github.com/awaw92/commerce
+Technologie: Python, Django, SQLite, HTML, CSS<BR>
+Repozytorium: https://github.com/awaw92/commerce<BR>
 Demo: https://www.youtube.com/watch?v=JrHB0RRyoZw
 
 ---
 
-3. Wiki Encyclopedia
+3. Wiki Encyclopedia<BR>
    Aplikacja typu wiki umożliwiająca tworzenie i edycję stron w formacie Markdown.
 
 Funkcjonalności:
@@ -96,13 +96,13 @@ Funkcjonalności:
 * konwersja Markdown → HTML
 * losowa strona i obsługa błędów
 
-Technologie: Python, Django, HTML, CSS, Markdown
-Repozytorium: https://github.com/awaw92/wiki
+Technologie: Python, Django, HTML, CSS, Markdown<BR>
+Repozytorium: https://github.com/awaw92/wiki<BR>
 Demo: https://www.youtube.com/watch?v=aZRAdCZa1lk
 
 ---
 
-4. Mail Client (SPA)
+4. Mail Client (SPA)<BR>
    Aplikacja typu single-page email client oparta o JavaScript i REST API.
 
 Funkcjonalności:
@@ -113,13 +113,13 @@ Funkcjonalności:
 * oznaczanie jako przeczytane / archiwizacja
 * odpowiadanie na wiadomości
 
-Technologie: JavaScript, HTML, CSS, REST API
-Repozytorium: https://github.com/awaw92/mail
+Technologie: JavaScript, HTML, CSS, REST API<BR>
+Repozytorium: https://github.com/awaw92/mail<BR>
 Demo: https://www.youtube.com/watch?v=MWtPhgErXE0
 
 ---
 
-5. Google Search Front-End
+5. Google Search Front-End<BR>
    Front-end wyszukiwarki inspirowany Google Search.
 
 Funkcjonalności:
@@ -128,8 +128,8 @@ Funkcjonalności:
 * obsługa parametrów GET
 * przycisk „I’m Feeling Lucky”
 
-Technologie: HTML, CSS
-Repozytorium: https://github.com/awaw92/search
+Technologie: HTML, CSS<BR>
+Repozytorium: https://github.com/awaw92/search<BR>
 Demo: https://www.youtube.com/watch?v=I7E3iYsNsPA
 
 ---
