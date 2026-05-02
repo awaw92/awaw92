@@ -21,15 +21,16 @@ Dodatkowo ukończyłem:
 
 ---
 
-🧪 Umiejętności QA
+## 🧪 Umiejętności QA
 
-* tworzenie i wykonywanie test case’ów
-* zgłaszanie błędów (bug reporting)
-* testowanie aplikacji webowych (manualne)
-* podstawy testowania API (REST)
-* znajomość cyklu życia błędu (bug lifecycle)
-* analiza logiki biznesowej aplikacji
-* identyfikacja edge case’ów
+- tworzenie i wykonywanie test case’ów
+- zgłaszanie błędów (bug reporting)
+- testowanie aplikacji webowych (manualne)
+- testowanie automatyczne UI (Selenium WebDriver)
+- podstawy testowania API (REST)
+- znajomość cyklu życia błędu (bug lifecycle)
+- analiza logiki biznesowej aplikacji
+- identyfikacja edge case’ów
 
 ---
 
