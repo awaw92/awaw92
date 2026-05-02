@@ -21,7 +21,7 @@ Dodatkowo ukończyłem:
 
 ---
 
-## 🧪 Umiejętności QA
+ 🧪 Umiejętności QA
 
 - tworzenie i wykonywanie test case’ów
 - zgłaszanie błędów (bug reporting)
