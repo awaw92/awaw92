@@ -138,7 +138,7 @@ Email: [adrianwawrzyniak92@wp.pl](mailto:adrianwawrzyniak92@wp.pl)
 
 
 
-# 📜 Moje certyfikaty i osiągnięcia edukacyjne w IT
+# 📜 Dokumentacja ukończonych kursów i edukacji w IT dowodząca uzyskaną wiedzę
 
 ![CS50](./assets/CS50W.png)
 ![CS50](./assets/tester-automatyczny-certyfikat-angielski.jpg)
@@ -148,4 +148,5 @@ Email: [adrianwawrzyniak92@wp.pl](mailto:adrianwawrzyniak92@wp.pl)
 ![CS50](./assets/tester-manualny-suplement1.jpg)
 ![CS50](./assets/tester-manualny-sumplement2.jpg)
 ![CS50](./assets/dyplomIT.jpg)
+![CS50](./assets/dyplom-technik-informatyk.jpg)
 
