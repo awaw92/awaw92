@@ -1,10 +1,6 @@
 Cześć, jestem Adrian
 
-Jestem początkującym specjalistą QA z zapleczem programistycznym (Python, Django, JavaScript). Skupiam się na testowaniu aplikacji webowych – zarówno manualnym, jak i automatycznym – ze szczególnym naciskiem na jakość, logikę biznesową oraz wykrywanie błędów.
-
-Posiadam doświadczenie w tworzeniu aplikacji webowych, dzięki czemu rozumiem ich architekturę oraz potencjalne miejsca występowania problemów. Pozwala mi to skuteczniej analizować działanie systemów i identyfikować błędy.
-
----
+Jestem początkującym QA Engineer z zapleczem programistycznym (Python, Django, JavaScript). Testuję aplikacje webowe manualnie i automatycznie, wykorzystując wiedzę developerską do analizy ich działania, identyfikacji błędów oraz projektowania skutecznych scenariuszy testowych (manualnych i automatycznych).
 
 🎓 O mnie
 
