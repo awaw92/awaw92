@@ -34,9 +34,10 @@ Dodatkowo ukończyłem:
 
 * Python (Django)
 * JavaScript
+* Selenium WebDriver
 * HTML, CSS
 * REST API
-* SQL (podstawy), SQLite
+* SQL / SQLite
 * Git, GitHub
 
 ---
