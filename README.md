@@ -144,5 +144,8 @@ Email: [adrianwawrzyniak92@wp.pl](mailto:adrianwawrzyniak92@wp.pl)
 ![CS50](./assets/tester-automatyczny-certyfikat-angielski.jpg)
 ![CS50](./assets/tester-automatyczny-ZASWIADCZENIE-ENG-1.jpg)
 ![CS50](./assets/tester-automatyczny-SUPLEMENT-ENG-1.jpg)
+![CS50](./assets/certyfikat-tester-manualny2.jpg)
+![CS50](./assets/tester-manualny-suplement1.jpg)
+![CS50](./assets/tester-manualny-sumplement2.jpg)
 ![CS50](./assets/dyplomIT.jpg)
 
