@@ -138,15 +138,6 @@ Email: [adrianwawrzyniak92@wp.pl](mailto:adrianwawrzyniak92@wp.pl)
 
 
 
-
-
-
-
-
-
-
-
-
 # 📜 Moje certyfikaty i osiągnięcia edukacyjne w IT
 
 ![CS50](./assets/CS50W.png)
