@@ -15,6 +15,7 @@ Dodatkowo ukończyłem:
 * Harvard CS50 – Web Programming with Python and JavaScript
 * certyfikat F100 – testowanie manualne i automatyczne
 
+Na dole na końcu całego opisu dokumentacja potwierdzająca uzyskane kwalifikacje.
 ---
 
  🧪 Umiejętności QA
